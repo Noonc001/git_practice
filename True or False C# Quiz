@@ -4,10 +4,6 @@ namespace TrueOrFalse
 {
   class Program
   {
-
-
-    //Main Method
-    
 		static void Main(string[] args)
     {
       // Do not edit these lines
@@ -32,7 +28,7 @@ namespace TrueOrFalse
 
       int askingIndex = 0;
 
-      
+      //loop
       foreach (string question in questions) {
         string input;
         bool isBool;
@@ -43,7 +39,7 @@ namespace TrueOrFalse
         input = Console.ReadLine();
         isBool = Boolean.TryParse(input, out inputBool);
 
-        while(isBool == false){
+        while(!isBool){
           Console.WriteLine("Incorrect, please try again.");
           input = Console.ReadLine();
           isBool = Boolean.TryParse(input, out inputBool);
@@ -51,16 +47,17 @@ namespace TrueOrFalse
 
         responses[askingIndex] = inputBool;
         askingIndex++;
-
        }
+
 
        int scoringIndex = 0;
        int score = 0;
 
+
        foreach(bool answer in answers){
          bool response = responses[scoringIndex];
          Console.Write(scoringIndex + 1 + ".");
-         Console.WriteLine($" Input: {response} | Answer: {answer}");
+         Console.WriteLine($" Your Input: {response} | Answer: {answer}");
          if(response == answer){
            score++;
          }

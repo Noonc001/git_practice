@@ -1,0 +1,75 @@
+using System;
+
+namespace TrueOrFalse
+{
+  class Program
+  {
+
+
+    //Main Method
+    
+		static void Main(string[] args)
+    {
+      // Do not edit these lines
+      Console.WriteLine("Welcome to 'True or False?'\nPress Enter to begin:");
+      string entry = Console.ReadLine();
+      Tools.SetUpInputStream(entry);
+
+      // Type your code below
+      string[] questions;
+      questions = new string[] {"A dog has 4 legs?", "England is in the UK?", "Rugby is played with 13 players in a team?", "A Hexagon has 6 sides", "The town Ruislip is in the English county of Surrey?"};
+
+      bool[] answers;
+      answers = new bool[] {true, true, false, true, false};
+
+
+      bool[] responses;
+      responses = new bool[5];
+
+      if(questions.Length != answers.Length){
+        Console.WriteLine("Warning not equal questions and answers");
+      }
+
+      int askingIndex = 0;
+
+      
+      foreach (string question in questions) {
+        string input;
+        bool isBool;
+        bool inputBool;
+
+        Console.WriteLine(question);
+        Console.WriteLine("True or False?");
+        input = Console.ReadLine();
+        isBool = Boolean.TryParse(input, out inputBool);
+
+        while(isBool == false){
+          Console.WriteLine("Incorrect, please try again.");
+          input = Console.ReadLine();
+          isBool = Boolean.TryParse(input, out inputBool);
+        }
+
+        responses[askingIndex] = inputBool;
+        askingIndex++;
+
+       }
+
+       int scoringIndex = 0;
+       int score = 0;
+
+       foreach(bool answer in answers){
+         bool response = responses[scoringIndex];
+         Console.Write(scoringIndex + 1 + ".");
+         Console.WriteLine($" Input: {response} | Answer: {answer}");
+         if(response == answer){
+           score++;
+         }
+         scoringIndex++;
+       }
+
+        Console.WriteLine($"You got {score} out of {questions.Length} correct.");
+
+  }
+ }
+}
+
